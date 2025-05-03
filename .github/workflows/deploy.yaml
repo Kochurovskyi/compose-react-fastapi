@@ -12,13 +12,13 @@ jobs:
       - run: docker build -t rallycoding/react-test -f ./client/Dockerfile.dev ./client
       - run: docker run -e CI=true rallycoding/react-test npm test
 
-      - run: docker build -t rallycoding/multi-client:latest ./client
-      - run: docker build -t rallycoding/multi-nginx:latest ./nginx
-      - run: docker build -t rallycoding/multi-server:latest ./server
-      - run: docker build -t rallycoding/multi-worker:latest ./worker
+      - run: docker build -t yukozoom/multi-client:latest ./client
+      - run: docker build -t yukozoom/multi-nginx:latest ./nginx
+      - run: docker build -t yukozoom/multi-server:latest ./server
+      - run: docker build -t yukozoom/multi-worker:latest ./worker
 
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-      - run: docker push rallycoding/multi-client:latest
-      - run: docker push rallycoding/multi-nginx:latest
-      - run: docker push rallycoding/multi-server:latest
-      - run: docker push rallycoding/multi-worker:latest
+      - run: docker push yukozoom/multi-client:latest
+      - run: docker push yukozoom/multi-nginx:latest
+      - run: docker push yukozoom/multi-server:latest
+      - run: docker push yukozoom/multi-worker:latest
