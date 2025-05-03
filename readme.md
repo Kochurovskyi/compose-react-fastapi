@@ -40,5 +40,6 @@ The application consists of multiple services:
 1. Clone this repository
 2. Navigate to the project root directory
 3. Run the application using Docker Compose:
+4. 
 ```bash
 docker-compose up
