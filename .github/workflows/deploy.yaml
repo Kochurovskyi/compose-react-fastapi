@@ -22,3 +22,15 @@ jobs:
       - run: docker push yukozoom/multi-nginx:latest
       - run: docker push yukozoom/multi-server:latest
       - run: docker push yukozoom/multi-worker:latest
+
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v22
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+          application_name: Multi-docker-udemy
+          environment_name: Multi-docker-udemy-env
+          existing_bucket_name: elasticbeanstalk-eu-central-1-047719653264
+          region: eu-central-1
+          version_label: ${{ github.sha }}
+          deployment_package: deploy.zip

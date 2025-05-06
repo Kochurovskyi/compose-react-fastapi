@@ -12,7 +12,8 @@ The application consists of multiple services:
 - **Redis**: In-memory database for storing calculation results
 - **PostgreSQL**: Persistent database for storing submitted indices
 - **Nginx**: Web server for routing requests between client and server
-- **AWS**: deployment infrastructure (Beanstalk, RDS, )
+- **AWS**: deployment infrastructure (Beanstalk, RDS)
+- **CI/CD**: GitHub Actions for continuous integration and deployment
 
 ## Features
 
