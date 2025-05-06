@@ -1,20 +1,24 @@
 {
   "AWS": {
-    "AWSEBDockerrunVersion": 2,
+    "AWSEBDockerrunVersion": 3,
     "containerDefinitions": [
       {"name": "client",
         "image": "yukozoom/multi-client:latest",
         "hosname": "client",
+        "memory": 128,
         "essential": false},
       {"name": "server",
         "image": "yukozoom/multi-server:latest",
+        "memory": 128,
         "hostname": "api",
         "essential": false},
       {"name": "worker",
         "image": "yukozoom/multi-worker:latest",
+        "memory": 128,
         "essential": false},
       {"name": "nginx",
         "image": "yukozoom/multi-nginx:latest",
+        "memory": 128,
         "essential": true,
         "portMappings": [{"hostPort": 80, "containerPort": 80}]
       }],
