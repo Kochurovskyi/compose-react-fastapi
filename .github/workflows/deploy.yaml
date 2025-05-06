@@ -40,10 +40,8 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-#          application_name: Multi-docker-udemy
-#          environment_name: Multi-docker-udemy-env
-          application_name: Multi-docker-udemy-2
-          environment_name: Multi-docker-udemy-2-env
+          application_name: Multi-docker-udemy
+          environment_name: Multi-docker-udemy-env
           existing_bucket_name: elasticbeanstalk-eu-central-1-047719653264
           region: eu-central-1
           version_label: ${{ github.sha }}
