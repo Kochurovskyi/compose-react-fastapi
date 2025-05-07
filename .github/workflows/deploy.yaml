@@ -1,0 +1,48 @@
+name: Deploy MultiDocker
+on:
+  push:
+    branches:
+      - main # check your repo, your default branch might be master!
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t rallycoding/react-test -f ./client/Dockerfile.dev ./client
+      - run: docker run -e CI=true rallycoding/react-test npm test
+
+      - name: Build Docker images
+        run: |
+          docker build -t yukozoom/multi-client:latest ./client
+          docker build -t yukozoom/multi-nginx:latest ./nginx
+          docker build -t yukozoom/multi-server:latest ./server
+          docker build -t yukozoom/multi-worker:latest ./worker
+
+      - name: Login to Docker Hub
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Push Docker images
+        run: |
+          docker push yukozoom/multi-client:latest
+          docker push yukozoom/multi-nginx:latest
+          docker push yukozoom/multi-server:latest
+          docker push yukozoom/multi-worker:latest
+
+      - name: Generate deployment package
+        run: zip -r deploy.zip . -x '*.git*'
+
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v22
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+          application_name: Multi-docker-udemy
+          environment_name: Multi-docker-udemy-env
+          existing_bucket_name: elasticbeanstalk-eu-central-1-047719653264
+          region: eu-central-1
+          version_label: ${{ github.sha }}
+          deployment_package: deploy.zip
