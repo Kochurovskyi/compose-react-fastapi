@@ -1,29 +1,29 @@
 {
-  "AWSEBDockerrunVersion": 3,
+  "AWSEBDockerrunVersion": 2,
   "containerDefinitions": [
     {
       "name": "client",
-      "image": "rallycoding/multi-client:latest",
+      "image": "yukozoom/multi-client:latest",
       "hostname": "client",
       "memory": 128,
       "essential": false
     },
     {
       "name": "server",
-      "image": "rallycoding/multi-server:latest",
+      "image": "yukozoom/multi-server:latest",
       "hostname": "api",
       "memory": 128,
       "essential": false
     },
     {
       "name": "worker",
-      "image": "rallycoding/multi-worker:latest",
+      "image": "yukozoom/multi-worker:latest",
       "memory": 128,
       "essential": false
     },
     {
       "name": "nginx",
-      "image": "rallycoding/multi-nginx:latest",
+      "image": "yukozoom/multi-nginx:latest",
       "memory": 128,
       "essential": true,
       "portMappings": [
