@@ -13,7 +13,7 @@ The application consists of multiple services:
 - **PostgreSQL**: Persistent database for storing submitted indices
 - **Nginx**: Web server for routing requests between client and server
 - **AWS**: deployment infrastructure (Beanstalk, RDS)
-- **CI/CD**: GitHub Actions for continuous integration and deployment
+- **CI/CD**: GitHub Actions for continuous integration and deployment to AWS
 
 ## Features
 
