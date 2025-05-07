@@ -1,12 +1,12 @@
 services:
   nginx:
-    image: 'rallycoding/multi-nginx'
+    image: 'yukozoom/multi-nginx'
     mem_limit: 128m
     hostname: nginx
     ports:
       - '80:80'
   server:
-    image: 'rallycoding/multi-server'
+    image: 'yukozoom/multi-server'
     mem_limit: 128m
     hostname: api
     environment:
@@ -23,11 +23,11 @@ services:
       timeout: 10s
       retries: 3
   client:
-    image: 'rallycoding/multi-client'
+    image: 'yukozoom/multi-client'
     mem_limit: 128m
     hostname: client
   worker:
-    image: 'rallycoding/multi-worker'
+    image: 'yukozoom/multi-worker'
     mem_limit: 128m
     hostname: worker
     environment:
